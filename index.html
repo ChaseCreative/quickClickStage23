@@ -564,7 +564,8 @@ var ranVerbIndx = Math.floor(Math.random() * ranVerb.length);
 var ranPart = [[myLatinSentence.ppp(),myTranslation.pppVerbs],[myLatinSentence.pap(),myTranslation.intransVerb + " "]];
 var ranPartIndx = Math.floor(Math.random() * ranPart.length);
 
-var ranSubj = [[" ",pronouns[ranPronounsIndx]],[myLatinSentence.subject,"The " + myTranslation.subject]];
+//var ranSubj = [[pronouns[ranPronounsIndx][0],pronouns[ranPronounsIndx][1]],[myLatinSentence.subject,"The " + myTranslation.subject]];
+var ranSubj = [[myLatinSentence.subject,"The " + myTranslation.subject]];
 var ranSubjIndx = Math.floor(Math.random() * ranSubj.length);
 
 //var ranDirectObject = [[myLatinSentence.accPluralObject(),dirObjComboSing[ranDirObjComboSingIndx][4]],[myLatinSentence.accSingObject(),myTranslation.object]]
@@ -1042,7 +1043,7 @@ function resetSentence(){
   ranPart = [[myLatinSentence.ppp(),myTranslation.pppVerbs],[myLatinSentence.pap(),myTranslation.intransVerb + " "]];
   ranPartIndx = Math.floor(Math.random() * ranPart.length);
 
-  ranSubj = [[pronouns[ranPronounsIndx][0],pronouns[ranPronounsIndx][1]],[myLatinSentence.subject,"The " + myTranslation.subject]];
+  ranSubj = [[myLatinSentence.subject,"The " + myTranslation.subject]];
   ranSubjIndx = Math.floor(Math.random() * ranSubj.length);
 
 }
@@ -1125,18 +1126,27 @@ resetSentence();
 
 if (ranSentenceIndx == 0) {
 //var latin = myLatinSentence.presThirdSing();
-var latin = ranSubj[ranSubjIndx][0] + " " + myLatinSentence.accSing() + " " + ranPart[ranPartIndx][0] + " " + myLatinSentence.adverbs + " " + ranVerb[ranVerbIndx][0];
+     var latin = ranSubj[ranSubjIndx][0] + " " + myLatinSentence.accSing() + " " + ranPart[ranPartIndx][0] + " " + myLatinSentence.adverbs + " " + ranVerb[ranVerbIndx][0];
 } else if (ranSentenceIndx == 1) {
-   if (pronouns[ranPronounsIndx][0] == "Is" || subject[ranSubjectIndx][2] == "m"){
 
-  var latin = ranSubj[ranSubjIndx][0] + ", " + perActPart[ranPerActPartIndx][0] + ", " +  myLatinSentence.accSing() + " " + myLatinSentence.adverbs + " " + ranVerb[ranVerbIndx][0];
-} if (pronouns[ranPronounsIndx][0] == "Ea" || subject[ranSubjectIndx][2] == "f"){
+  if (subject[ranSubjectIndx][2] == "m"){
 
-var latin = ranSubj[ranSubjIndx][0] + ", " + perActPart[ranPerActPartIndx][0].slice(0,-2) + "a, " +  myLatinSentence.accSing() + " " + myLatinSentence.adverbs + " " + ranVerb[ranVerbIndx][0];
-} if (subject[ranSubjectIndx][2] == "n"){
+  latin = ranSubj[ranSubjIndx][0] + ", " + perActPart[ranPerActPartIndx][0] + ", " +  myLatinSentence.accSing() + " " + myLatinSentence.adverbs + " " + ranVerb[ranVerbIndx][0];
+ }
 
-var latin = ranSubj[ranSubjIndx][0] + ", " + perActPart[ranPerActPartIndx][0].slice(0,-2) + "um, " +  myLatinSentence.accSing() + " " + myLatinSentence.adverbs + " " + ranVerb[ranVerbIndx][0];
+if (subject[ranSubjectIndx][2] == "f"){
+
+ latin = ranSubj[ranSubjIndx][0] + ", " + perActPart[ranPerActPartIndx][0].slice(0,-2) + "a, " +  myLatinSentence.accSing() + " " + myLatinSentence.adverbs + " " + ranVerb[ranVerbIndx][0];
 }
+
+
+if (subject[ranSubjectIndx][2] == "n"){
+
+ latin = ranSubj[ranSubjIndx][0] + ", " + perActPart[ranPerActPartIndx][0].slice(0,-2) + "um, " +  myLatinSentence.accSing() + " " + myLatinSentence.adverbs + " " + ranVerb[ranVerbIndx][0];
+}
+
+
+
 
 } else if (ranSentenceIndx == 2) {
     //var latin = myLatinSentence.nomPluralSubject() + " " + myLatinSentence.datSubjSing() + " " + ranDirectObject[ranDirectObjectIndx][0] + " " +  myLatinSentence.impThirdPlural();
